@@ -41,10 +41,10 @@ begin
 		6'd4://beq
 		begin
 			selControl=1;//restar si son iguales resul=0
-			enW_Bank=1; //lectura
+			enW_Bank=1; //leer
 			selMuxMem_ALU=1;//no importa
-			selMuxSign_Bank=1;//Elige extension de signo 
-			selMuxAddr=0;//Elige segunda direccion
+			selMuxSign_Bank=0;//Elige DR2 
+			selMuxAddr=0;//no importa
 			enW_Mem=0;
 			enR_Mem=0;
 			branch=1;//funcion de beq
@@ -137,7 +137,7 @@ begin
 		6'b101011://sw
 		begin
 			selControl=4'd0;//sumar
-			enW_Bank=1;//escribir
+			enW_Bank=1;//leer
 			selMuxMem_ALU=1;  
 			selMuxSign_Bank=1;//Elige extension de signo 
 			selMuxAddr=0;//Elige segunda direccion

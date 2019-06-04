@@ -5,7 +5,7 @@ module memoriaRAM(
 	output reg [31:0] outS
 );
 reg [31:0]celda[1023:0];
-always@(*)
+always@(index)
 begin
 	if(WE && !RE)//opcion de escritura
 	begin

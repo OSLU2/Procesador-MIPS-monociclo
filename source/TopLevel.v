@@ -7,9 +7,7 @@ module TopLevel(
 	input sel,
 	output [31:0]DR1,DR2,
 	output [31:0]AluResul,
-	output [31:0]MuxResul,
-	output [5:0]op,
-	output [31:0]Mux_sign_DR2,
+	output [5:0]op,funt,
 	output FlagZero,
 	output [31:0]addresNext
 );
@@ -24,7 +22,7 @@ wire Ctrl_MuxSign_Bank;
 wire Ctrl_And;
 wire Ctrl_MuxPC2;
 //conexiones de Banco a otros modulos
-wire[31:0] DR1_A,DR2_Index;
+wire[31:0] DR1_A;
 wire[31:0] DR2_MuxALU;
 //ALU_Ctrl a ALU
 wire [3:0] AluCtrl_ALU;
@@ -58,17 +56,14 @@ reg EWR;
 reg [31:0]RWBank; 
 reg [4:0]AW;
 assign op=instr[31:26];
-assign MuxResul=MuxMem_ALU_Bank;
 assign DR1=DR1_A;
 assign ResulInstr=instr;
 assign PC_Add4=PC_memInstr;
-assign Mux_sign_DR2=MuxALU_DR2Bank_Sign;
 assign FlagZero=ZeroALU_And;
-assign DR2=DR2_MuxALU;
 assign AluResul=ALU_Mux;
-assign ALU_Mem=ALU_Mux;
-assign DR2_Index=DR2_MuxALU;
 assign addresNext=MuxPC2_PC;
+assign funt=instr[5:0];
+assign DR2=DR2_MuxALU;
 always @(*)
 begin
 	if(sel==1)

@@ -1,0 +1,94 @@
+//Guardar en banco de registros la palabra encriptar
+//Donde la celda 15 tiene 0
+addi $t0,$t15, 69
+addi $t1,$t15, 110
+addi $t2,$t15, 99
+addi $t3,$t15, 114
+addi $t4,$t15, 105
+addi $t5,$t15, 112
+addi $t6,$t15, 116
+addi $t7,$t15, 97
+addi $t8,$t15, 114
+//Guardar en memoria Encriptar y el tamaño de la palabra
+sw $t0, 0
+sw $t1, 1
+sw $t2, 2
+sw $t3, 3 
+sw $t4, 4
+sw $t5, 5
+sw $t6, 6
+sw $t7, 7
+sw $t8, 8
+//Llave
+addi $t10, 76
+addi $t11, 108
+addi $t12, 97
+addi $t13, 118
+addi $t14, 101
+//instruccion para corregir error de inmediata
+add $t18,$t16,$t17
+//suma de llave y palabra
+add $t20,$t0,$t10
+add $t21,$t1,$t11
+add $t22,$t2,$t12
+add $t23,$t3,$t13
+add $t24,$t4,$t14
+add $t25,$t5,$t10
+add $t26,$t6,$t11
+add $t27,$t7,$T12
+add $t28,$t8,$t13
+// crear subrutina para comprobar ubicacion de instruccion
+addi $t30,$t15, 256				//actual instruccion 33
+// la celda 29 contiene 256 
+addi $t29,$t15, 256			//140
+//instruccion para corregir error de inmediata
+add $t18,$t16,$t17
+// opeacion de modulo de palabra
+mod $t0,$t20,$t29
+mod $t1,$t21,$t29
+mod $t2,$t22,$t29
+mod $t3,$t23,$t29
+mod $t4,$t24,$t29
+mod $t5,$t25,$t29
+mod $t6,$t26,$t29
+mod $t7,$t27,$t29
+mod $t8,$t28,$t29
+// comprobar si esta modulando la parabra a encriptar o desencriptar
+beq $t30,$t31,22			//instruccion 46 
+//Guardar palabra encriptada
+sw $t0, 20
+sw $t1, 21
+sw $t2, 22
+sw $t3, 23 
+sw $t4, 24
+sw $t5, 25
+sw $t6, 26
+sw $t7, 27
+sw $t8, 28
+//instruccion para corregir error de inmediata
+addi $t30,$t15, 256	
+add $t18,$t16,$t17
+//restar llave de la palabra encriptada
+sub $t20,$t0,$t10		//instruccion 54
+sub $t21,$t1,$t11
+sub $t22,$t2,$t12
+sub $t23,$t3,$t13
+sub $t24,$t4,$t14
+sub $t25,$t5,$t10
+sub $t26,$t6,$t11
+sub $t27,$t7,$T12
+sub $t28,$t8,$t13
+//ir a subrutina de modulo de palabra
+addi $t31,256				
+j 34					//instruccion 64
+//Guardar palabra desencriptada
+sw $t0, 30
+sw $t1, 31
+sw $t2, 32
+sw $t3, 33 
+sw $t4, 34
+sw $t5, 35
+sw $t6, 36
+sw $t7, 37
+sw $t8, 38
+//ultima instruccion es 77, contando subrutina es la 88
